@@ -13,3 +13,15 @@ export const GET_AIRPORTS = gql`
     }
   }
 `
+
+export const SEARCH_AIRPORTS = gql`
+  query SearchAirports($query: String!) {
+    searchAirports(query: $query) {
+      id
+      name
+      iata
+      city
+      country
+    }
+  }
+`

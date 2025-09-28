@@ -1,4 +1,4 @@
-import { Query, Resolver } from '@nestjs/graphql';
+import { Args, Query, Resolver } from '@nestjs/graphql';
 import { AirportService } from './airport.service';
 
 @Resolver('Airport')
@@ -8,5 +8,10 @@ export class AirportResolver {
   @Query('airports')
   async getAllAirports() {
     return this.airportService.getAllAirports();
+  }
+
+  @Query('searchAirports')
+  async searchAirports(@Args('query') query: string) {
+    return this.airportService.searchAirports(query);
   }
 }

@@ -4,6 +4,7 @@ type Query {
 
   getSeaport(id: Int!): Seaport
   airports: [Airport!]!
+  searchAirports(query: String!): [Airport!]!
 }
 
 type Seaport {

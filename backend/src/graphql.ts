@@ -12,6 +12,7 @@ export interface IQuery {
     hello(): string | Promise<string>;
     getSeaport(id: number): Nullable<Seaport> | Promise<Nullable<Seaport>>;
     airports(): Airport[] | Promise<Airport[]>;
+    searchAirports(query: string): Airport[] | Promise<Airport[]>;
 }
 
 export interface Seaport {

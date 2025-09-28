@@ -7,7 +7,16 @@ import { useSearchAirports } from "../hooks/useSearchAirports";
 
 const Page: NextPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { airports, loading, error } = useSearchAirports(searchTerm);
+  const {
+    airports,
+    totalCount,
+    totalPages,
+    currentPage,
+    hasNextPage,
+    hasPreviousPage,
+    error,
+    refetch,
+  } = useSearchAirports(searchTerm);
 
   if (error) {
     return <p>Error: {error.message}</p>;
@@ -19,13 +28,18 @@ const Page: NextPage = () => {
 
       <input
         type="text"
-        placeholder="Search airports..."
-        className="mt-5 p-2 border border-gray-300 rounded"
+        placeholder="Start typing..."
+        className="p-2 border border-gray-300 rounded w-full bg-gray-100 py-2 mt-8"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <h2 className="mt-10 text-xl font-semibold">All Airports</h2>
+      <h2 className="mt-10 text-xl font-semibold">
+        Airports
+        <span className="rounded-lg bg-blue-400 text-sm text-white px-2 py-1 ml-3">
+          {totalCount}
+        </span>
+      </h2>
 
       <div className="grid grid-cols-2 gap-4 mt-5">
         {airports
@@ -45,6 +59,23 @@ const Page: NextPage = () => {
             ))
           : null}
       </div>
+      {totalPages > 1 ? (
+        <div className="flex items-center justify-center gap-4 mt-10">
+          {hasPreviousPage ? (
+            <button onClick={() => refetch({ page: currentPage - 1 })}>
+              Previous
+            </button>
+          ) : null}
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          {hasNextPage ? (
+            <button onClick={() => refetch({ page: currentPage + 1 })}>
+              Next
+            </button>
+          ) : null}
+        </div>
+      ) : null}
     </Layout>
   );
 };

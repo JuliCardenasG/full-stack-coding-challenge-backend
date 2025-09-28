@@ -4,7 +4,7 @@ type Query {
 
   getSeaport(id: Int!): Seaport
   airports: [Airport!]!
-  searchAirports(query: String!): [Airport!]!
+  searchAirports(query: String!, page: Int = 1): PaginatedAirports!
 }
 
 type Seaport {
@@ -26,4 +26,13 @@ type Airport {
   country: String!
   longitude: Float!
   latitude: Float!
+}
+
+type PaginatedAirports {
+  airports: [Airport!]!
+  totalCount: Int!
+  totalPages: Int!
+  currentPage: Int!
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
 }

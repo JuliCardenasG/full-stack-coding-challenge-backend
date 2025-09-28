@@ -11,7 +11,10 @@ export class AirportResolver {
   }
 
   @Query('searchAirports')
-  async searchAirports(@Args('query') query: string) {
-    return this.airportService.searchAirports(query);
+  async searchAirports(
+    @Args('query') query: string,
+    @Args('page', { defaultValue: 1 }) page: number,
+  ) {
+    return this.airportService.searchAirports(query, page);
   }
 }

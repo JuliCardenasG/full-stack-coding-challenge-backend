@@ -12,7 +12,7 @@ export interface IQuery {
     hello(): string | Promise<string>;
     getSeaport(id: number): Nullable<Seaport> | Promise<Nullable<Seaport>>;
     airports(): Airport[] | Promise<Airport[]>;
-    searchAirports(query: string): Airport[] | Promise<Airport[]>;
+    searchAirports(query: string, page?: Nullable<number>): PaginatedAirports | Promise<PaginatedAirports>;
 }
 
 export interface Seaport {
@@ -34,6 +34,15 @@ export interface Airport {
     country: string;
     longitude: number;
     latitude: number;
+}
+
+export interface PaginatedAirports {
+    airports: Airport[];
+    totalCount: number;
+    totalPages: number;
+    currentPage: number;
+    hasNextPage: boolean;
+    hasPreviousPage: boolean;
 }
 
 type Nullable<T> = T | null;

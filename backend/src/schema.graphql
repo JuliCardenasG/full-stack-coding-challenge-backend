@@ -3,6 +3,7 @@ type Query {
   hello: String!
 
   getSeaport(id: Int!): Seaport
+  airports: [Airport!]!
 }
 
 type Seaport {
@@ -14,4 +15,14 @@ type Seaport {
 type Location {
   city: String!
   countryAlpha2: String!
+}
+
+type Airport {
+  id: Int!
+  name: String!
+  iata: String!
+  city: String!
+  country: String!
+  longitude: Float!
+  latitude: Float!
 }

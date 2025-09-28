@@ -18,11 +18,21 @@ export class AppService {
   }
 
   findSeaportById(id: number) {
-    return seaports.find((port) => port.id === id);
+    const seaport = seaports.find((port) => port.id === id);
+    if (!seaport) {
+      console.log(`SERVICE: No seaport found for id ${id}`);
+      return null;
+    }
+    return seaport;
   }
 
   findLocationForPort(portId: number) {
     console.log(`SERVICE: Checking for location of port ${portId}...`);
-    return locations.find((loc) => loc.portId === portId);
+    const location = locations.find((loc) => loc.portId === portId);
+    if (!location) {
+      console.log(`SERVICE: No location found for port ${portId}`);
+      return null;
+    }
+    return location;
   }
 }

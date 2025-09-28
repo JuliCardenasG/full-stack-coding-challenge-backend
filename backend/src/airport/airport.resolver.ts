@@ -10,6 +10,11 @@ export class AirportResolver {
     return this.airportService.getAllAirports();
   }
 
+  @Query('getAirport')
+  async getAirport(@Args('iata') iata: string) {
+    return this.airportService.getAirport(iata);
+  }
+
   @Query('searchAirports')
   async searchAirports(
     @Args('query') query: string,

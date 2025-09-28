@@ -1,8 +1,8 @@
 import { gql } from "@apollo/client";
 
-export const GET_AIRPORTS = gql`
-  query GetAirports {
-    airports {
+export const GET_AIRPORT = gql`
+  query GetAirport($iata: String!) {
+    getAirport(iata: $iata) {
       id
       name
       iata

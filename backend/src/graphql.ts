@@ -13,6 +13,7 @@ export interface IQuery {
     getSeaport(id: number): Nullable<Seaport> | Promise<Nullable<Seaport>>;
     airports(): Airport[] | Promise<Airport[]>;
     searchAirports(query: string, page?: Nullable<number>): PaginatedAirports | Promise<PaginatedAirports>;
+    getAirport(iata: string): Nullable<Airport> | Promise<Nullable<Airport>>;
 }
 
 export interface Seaport {

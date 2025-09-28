@@ -12,6 +12,12 @@ export class AirportService {
     });
   }
 
+  async getAirport(iata: string) {
+    return this.prisma.airport.findUnique({
+      where: { iata: iata.toUpperCase() },
+    });
+  }
+
   async searchAirports(query: string, page = 1) {
     const totalCount = await this.prisma.airport.count({
       where: {
